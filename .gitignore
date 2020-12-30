@@ -1,0 +1,10 @@
+
+.idea/*
+*/__pycache__/*
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+postgres-data

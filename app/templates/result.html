@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <b>{{ MESSAGE }}</b>
+</div>
+
+<div class="row">
+    <span>Redirecting to index in 4 seconds...</span>
+</div>
+
+<script>
+     window.setTimeout(function(){
+
+       // Move to a new location or you can do something else
+       window.location.href = "{{ url_for('index') }}";
+
+       }, 3000);
+
+ </script>
+
+{% endblock %}

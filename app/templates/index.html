@@ -1,0 +1,86 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row"><h4>Process Purchase</h4></div>
+<div class="row">
+    <form method="POST" action="{{ url_for('process_payment') }}">
+        <div class="row">
+            <div class="input-field col s6">
+
+            <select name="product_id" required>
+                <option value="">Select a product:</option>
+                {% for p in PRODUCTS %}
+                <option value="{{ p.product_id }}">Name: {{ p.name }} | Price: {{ p.price }} | Available: {{ p.quantity_available }}</option>
+                {% endfor %}
+
+            </select>
+            <label>Products</label>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="0" id="payment_amount"
+                     name="payment_amount" step="0.1" type="number"
+                     class="validate" required>
+
+              <label for="payment_amount">Amount provided in Euro</label>
+            </div>
+        </div>
+        <div class="row">
+              <button class="btn waves-effect waves-light" type="submit">Process Payment
+                <i class="material-icons right">send</i>
+              </button>
+        </div>
+    </form>
+</div>
+
+<div class="row divider"></div>
+
+<div class="row"><h4>Create New Product</h4></div>
+
+<div class="row">
+    <form method="POST" action="{{ url_for('create_product') }}">
+    <div class="input-field col s4">
+      <input placeholder="Example: apple" id="name"
+             name="name" type="text"
+             class="validate" required>
+
+      <label for="payment_amount">Name</label>
+    </div>
+
+    <div class="input-field col s4">
+      <input placeholder="0" id="price"
+             name="price" step="0.1" min="0.1" type="number"
+             class="validate" required>
+
+      <label for="price">Price</label>
+    </div>
+
+    <div class="input-field col s4">
+      <input placeholder="0" id="quantity"
+             name="quantity" step="1" min="1" type="number"
+             class="validate" required>
+
+      <label for="price">Quantity</label>
+    </div>
+
+    <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Create
+            <i class="material-icons right">add</i>
+          </button>
+    </div>
+</form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+</script>
+
+{% endblock %}
