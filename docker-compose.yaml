@@ -2,8 +2,16 @@ version: '3.4'
 services:
   web:
     build: ./app
+    depends_on:
+    - db
     env_file:
       - env_file
+    command: sh -c "/wait && flask run -h 0.0.0.0 -p 5000"
+    environment:
+      - WAIT_HOSTS=db:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=3
+      - WAIT_HOST_CONNECT_TIMEOUT=30
     networks:
       my-network:
         aliases:
